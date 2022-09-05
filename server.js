@@ -1,13 +1,19 @@
 'use strict';
 const express = require('express');
 const app=express();
+const cors = require ('cors');
+
+app.use(express.json());
+app.use(cors());
 
 app.get('/',(req,res)=>res.send('Hello World'));
 
 app.post('/person',(req,res)=>{
-    const {name,age,gender}=req.query;
+    //const {name,gender,age}=req.query;
+    const {age}=req.body;
     let newAge=parseInt(age)+5;
-    res.send({name:name , gender:gender , age:`after 5 years you will be ${newAge}`})
+   //res.send({name:name , gender:gender , age:newAge});
+     res.send(`${newAge}`);
 })
 
 function start (port){
